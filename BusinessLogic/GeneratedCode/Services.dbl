@@ -1,0 +1,526 @@
+;; Generated on 29-Aug-2014 02:25:25 by SynergyTasks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=114c5dbb1312a8bc
+;; 
+;; The contents of this file are auto-generated. Only add modifications to the end of this file.
+;; Any modifications will be lost when the file is re-generated.
+;; 
+import System
+import System.Collections
+import System.Collections.Generic
+import System.Reflection
+import System.Runtime.Serialization
+import System.ServiceModel
+namespace BusinessLogic
+
+;;; <summary>
+;;; Procedural Interface Class BusinessLogicTmp
+;;; </summary>
+	{ServiceContract()}
+	public partial class Services
+	
+		;;; <summary>
+		;;; constructor
+		;;; </summary>
+		public method Services
+		endparams
+		proc
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="userName"></param>
+		;;; <param name="password"></param>
+		;;; <param name="message"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method Login   ,Method_status
+			userName    ,string
+			password    ,string
+			out message    ,string
+		endparams
+		record
+			s_userName	,string
+			s_password	,string
+			s_message	,string
+		proc
+			data ret   ,Method_status
+			s_userName = userName
+			s_password = password
+			ret = (Method_status) (int)%Login(s_userName,s_password,s_message)
+			message = s_message
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aGroupId"></param>
+		;;; <param name="aParts"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method GetProductGroupParts   ,Method_status
+			aGroupId    ,string
+			out aParts    ,@List<BusinessLogic.part>
+		endparams
+		record
+			s_aGroupId	,string
+			s_aParts	,@ArrayList
+		proc
+			data ret   ,Method_status
+			s_aGroupId = aGroupId
+			aParts = new List<BusinessLogic.part>()
+			s_aParts = new ArrayList()
+			ret = (Method_status) (int)%GetProductGroupParts(s_aGroupId,s_aParts)
+			data i    ,int
+			for i from 0 thru (s_aParts.Count - 1)
+			begin
+				data xfStr2    ,@BusinessLogic.part,new BusinessLogic.part()
+				data tStr2     ,^Global.strPart
+				tStr2 = (@^Global.strPart)s_aParts[i]
+				xfStr2.SynergyToStruct(tStr2)
+				aParts.Add(xfStr2)
+			end
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aPart"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method CreatePart   ,Method_status
+			aPart    ,@BusinessLogic.Part
+		endparams
+		proc
+			data ret   ,Method_status
+			ret = (Method_status) (int)%CreatePart((^Global.strpart)aPart.StructToSynergy())
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aParts"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method ReadAllParts   ,Method_status
+			out aParts    ,@List<BusinessLogic.part>
+		endparams
+		record
+			s_aParts	,@ArrayList
+		proc
+			data ret   ,Method_status
+			aParts = new List<BusinessLogic.part>()
+			s_aParts = new ArrayList()
+			ret = (Method_status) (int)%ReadAllParts(s_aParts)
+			data i    ,int
+			for i from 0 thru (s_aParts.Count - 1)
+			begin
+				data xfStr1    ,@BusinessLogic.part,new BusinessLogic.part()
+				data tStr1     ,^Global.strPart
+				tStr1 = (@^Global.strPart)s_aParts[i]
+				xfStr1.SynergyToStruct(tStr1)
+				aParts.Add(xfStr1)
+			end
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aId"></param>
+		;;; <param name="aPart"></param>
+		;;; <param name="aGrfa"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method ReadPart   ,Method_status
+			aId    ,string
+			out aPart    ,@BusinessLogic.Part
+			out aGrfa    ,string
+		endparams
+		record
+			s_aId	,a20
+			s_2_aPart	,^global.strpart
+			s_aGrfa	,string
+		proc
+			data ret   ,Method_status
+			s_aId = aId
+			aPart = new BusinessLogic.part()
+			ret = (Method_status) (int)%ReadPart(s_aId,s_2_aPart,s_aGrfa)
+			aPart.SynergyToStruct(s_2_aPart)
+			aGrfa = s_aGrfa
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aPart"></param>
+		;;; <param name="aGrfa"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method UpdatePart   ,Method_status
+			inout  aPart    ,@BusinessLogic.Part
+			inout  aGrfa    ,string
+		endparams
+		record
+			s_1_aPart	,^global.strpart
+			s_aGrfa	,string
+		proc
+			data ret   ,Method_status
+			s_1_aPart = aPart.StructToSynergy()
+			s_aGrfa = aGrfa
+			ret = (Method_status) (int)%UpdatePart(s_1_aPart,s_aGrfa)
+			aPart.SynergyToStruct(s_1_aPart)
+			aGrfa = s_aGrfa
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aGrfa"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method DeletePart   ,Method_status
+			aGrfa    ,string
+		endparams
+		record
+			s_aGrfa	,string
+		proc
+			data ret   ,Method_status
+			s_aGrfa = aGrfa
+			ret = (Method_status) (int)%DeletePart(s_aGrfa)
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aId"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method PartExists   ,Method_status
+			aId    ,string
+		endparams
+		record
+			s_aId	,a20
+		proc
+			data ret   ,Method_status
+			s_aId = aId
+			ret = (Method_status) (int)%PartExists(s_aId)
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aProductGroup"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method CreateProductGroup   ,Method_status
+			aProductGroup    ,@BusinessLogic.Product_group
+		endparams
+		proc
+			data ret   ,Method_status
+			ret = (Method_status) (int)%CreateProductGroup((^Global.strproductgroup)aProductGroup.StructToSynergy())
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aProductGroups"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method ReadAllProductGroups   ,Method_status
+			out aProductGroups    ,@List<BusinessLogic.product_group>
+		endparams
+		record
+			s_aProductGroups	,@ArrayList
+		proc
+			data ret   ,Method_status
+			aProductGroups = new List<BusinessLogic.product_group>()
+			s_aProductGroups = new ArrayList()
+			ret = (Method_status) (int)%ReadAllProductGroups(s_aProductGroups)
+			data i    ,int
+			for i from 0 thru (s_aProductGroups.Count - 1)
+			begin
+				data xfStr1    ,@BusinessLogic.product_group,new BusinessLogic.product_group()
+				data tStr1     ,^Global.strProductGroup
+				tStr1 = (@^Global.strProductGroup)s_aProductGroups[i]
+				xfStr1.SynergyToStruct(tStr1)
+				aProductGroups.Add(xfStr1)
+			end
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aGroupId"></param>
+		;;; <param name="aProductGroup"></param>
+		;;; <param name="aGrfa"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method ReadProductGroup   ,Method_status
+			aGroupId    ,string
+			out aProductGroup    ,@BusinessLogic.Product_group
+			out aGrfa    ,string
+		endparams
+		record
+			s_aGroupId	,a20
+			s_2_aProductGroup	,^global.strproductgroup
+			s_aGrfa	,string
+		proc
+			data ret   ,Method_status
+			s_aGroupId = aGroupId
+			aProductGroup = new BusinessLogic.product_group()
+			ret = (Method_status) (int)%ReadProductGroup(s_aGroupId,s_2_aProductGroup,s_aGrfa)
+			aProductGroup.SynergyToStruct(s_2_aProductGroup)
+			aGrfa = s_aGrfa
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aProductGroup"></param>
+		;;; <param name="aGrfa"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method UpdateProductGroup   ,Method_status
+			inout  aProductGroup    ,@BusinessLogic.Product_group
+			inout  aGrfa    ,string
+		endparams
+		record
+			s_1_aProductGroup	,^global.strproductgroup
+			s_aGrfa	,string
+		proc
+			data ret   ,Method_status
+			s_1_aProductGroup = aProductGroup.StructToSynergy()
+			s_aGrfa = aGrfa
+			ret = (Method_status) (int)%UpdateProductGroup(s_1_aProductGroup,s_aGrfa)
+			aProductGroup.SynergyToStruct(s_1_aProductGroup)
+			aGrfa = s_aGrfa
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aGrfa"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method DeleteProductGroup   ,Method_status
+			aGrfa    ,string
+		endparams
+		record
+			s_aGrfa	,string
+		proc
+			data ret   ,Method_status
+			s_aGrfa = aGrfa
+			ret = (Method_status) (int)%DeleteProductGroup(s_aGrfa)
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aGroupId"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method ProductGroupExists   ,Method_status
+			aGroupId    ,string
+		endparams
+		record
+			s_aGroupId	,a20
+		proc
+			data ret   ,Method_status
+			s_aGroupId = aGroupId
+			ret = (Method_status) (int)%ProductGroupExists(s_aGroupId)
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aSupplier"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method CreateSupplier   ,Method_status
+			aSupplier    ,@BusinessLogic.Supplier
+		endparams
+		proc
+			data ret   ,Method_status
+			ret = (Method_status) (int)%CreateSupplier((^Global.strsupplier)aSupplier.StructToSynergy())
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aSuppliers"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method ReadAllSuppliers   ,Method_status
+			out aSuppliers    ,@List<BusinessLogic.supplier>
+		endparams
+		record
+			s_aSuppliers	,@ArrayList
+		proc
+			data ret   ,Method_status
+			aSuppliers = new List<BusinessLogic.supplier>()
+			s_aSuppliers = new ArrayList()
+			ret = (Method_status) (int)%ReadAllSuppliers(s_aSuppliers)
+			data i    ,int
+			for i from 0 thru (s_aSuppliers.Count - 1)
+			begin
+				data xfStr1    ,@BusinessLogic.supplier,new BusinessLogic.supplier()
+				data tStr1     ,^Global.strSupplier
+				tStr1 = (@^Global.strSupplier)s_aSuppliers[i]
+				xfStr1.SynergyToStruct(tStr1)
+				aSuppliers.Add(xfStr1)
+			end
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aSupplierId"></param>
+		;;; <param name="aSupplier"></param>
+		;;; <param name="aGrfa"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method ReadSupplier   ,Method_status
+			aSupplierId    ,string
+			out aSupplier    ,@BusinessLogic.Supplier
+			out aGrfa    ,string
+		endparams
+		record
+			s_aSupplierId	,a20
+			s_2_aSupplier	,^global.strsupplier
+			s_aGrfa	,string
+		proc
+			data ret   ,Method_status
+			s_aSupplierId = aSupplierId
+			aSupplier = new BusinessLogic.supplier()
+			ret = (Method_status) (int)%ReadSupplier(s_aSupplierId,s_2_aSupplier,s_aGrfa)
+			aSupplier.SynergyToStruct(s_2_aSupplier)
+			aGrfa = s_aGrfa
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aSupplier"></param>
+		;;; <param name="aGrfa"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method UpdateSupplier   ,Method_status
+			inout  aSupplier    ,@BusinessLogic.Supplier
+			inout  aGrfa    ,string
+		endparams
+		record
+			s_1_aSupplier	,^global.strsupplier
+			s_aGrfa	,string
+		proc
+			data ret   ,Method_status
+			s_1_aSupplier = aSupplier.StructToSynergy()
+			s_aGrfa = aGrfa
+			ret = (Method_status) (int)%UpdateSupplier(s_1_aSupplier,s_aGrfa)
+			aSupplier.SynergyToStruct(s_1_aSupplier)
+			aGrfa = s_aGrfa
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aGrfa"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method DeleteSupplier   ,Method_status
+			aGrfa    ,string
+		endparams
+		record
+			s_aGrfa	,string
+		proc
+			data ret   ,Method_status
+			s_aGrfa = aGrfa
+			ret = (Method_status) (int)%DeleteSupplier(s_aGrfa)
+			mreturn ret
+		endmethod
+		;;; <summary>
+		;;; *** To Do ***
+		;;; </summary>
+		;;; <param name="aSupplierId"></param>
+		;;; <returns></returns>
+		{OperationContract()}
+		public method SupplierExists   ,Method_status
+			aSupplierId    ,string
+		endparams
+		record
+			s_aSupplierId	,a20
+		proc
+			data ret   ,Method_status
+			s_aSupplierId = aSupplierId
+			ret = (Method_status) (int)%SupplierExists(s_aSupplierId)
+			mreturn ret
+		endmethod
+		;  xfnlnet method stubs
+		;;; <summary>
+		;;; connect to xfServerPlus
+		;;; </summary>
+		public method connect   ,void
+		endparams
+		proc
+		endmethod
+		;;; <summary>
+		;;; xfServerPlus four parameter connect
+		;;; </summary>
+		;;; <param name="hostIP">IP address</param>
+		;;; <param name="hostPort">port number</param>
+		;;; <param name="minPort">minport number</param>
+		;;; <param name="maxPort">maxport number</param>
+		public method connect   ,void
+		  hostIP     ,string
+		  hostPort   ,int
+		  minPort    ,int
+		  maxPort    ,int
+		endparams
+		proc
+		endmethod
+		;;; <summary>
+		;;; xfServerPlus host and port connect
+		;;; </summary>
+		;;; <param name="hostIP">IP address</param>
+		;;; <param name="hostPort">port number</param>
+		public method connect   ,void
+		  hostIP     ,string
+		  hostPort   ,int
+		endparams
+		proc
+		endmethod
+		;;; <summary>
+		;;; disconnect from xfServerPlus
+		;;; </summary>
+		public method disconnect   ,void
+		endparams
+		proc
+		endmethod
+		;;; <summary>
+		;;; set the call timeout in seconds
+		;;; </summary>
+		;;; <param name="seconds">timeout in seconds</param>
+		public method setCallTimeout   ,void
+		  in seconds    ,int
+		endparams
+		proc
+		endmethod
+		;;; <summary>
+		;;; set the user string
+		;;; </summary>
+		;;; <param name="userString">The user string</param>
+		public method setUserString   ,void
+		  in userString    ,string
+		endparams
+		proc
+			xcall XFPL_LOG(userString)
+		endmethod
+		;;; <summary>
+		;;; get the user string 
+		;;; </summary>
+		;;; <returns>User String</returns>
+		public method getUserString   ,string
+		  out userString    ,string
+		endparams
+		proc
+			mreturn('')
+		endmethod
+	endclass
+endnamespace

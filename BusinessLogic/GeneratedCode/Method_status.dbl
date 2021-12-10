@@ -1,0 +1,18 @@
+;; Generated on 29-Aug-2014 02:25:25 by SynergyTasks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=114c5dbb1312a8bc
+;; 
+;; The contents of this file are auto-generated. Only add modifications to the end of this file.
+;; Any modifications will be lost when the file is re-generated.
+;; 
+import System
+import System.Text
+namespace BusinessLogic
+
+;;; <summary>
+;;; Enumeration BusinessLogicTmp
+;;; </summary>
+	public enum Method_status
+		Success
+		Fail
+		Fatal_error
+	endenum
+endnamespace

@@ -1,0 +1,331 @@
+;; Generated on 29-Aug-2014 02:25:25 by SynergyTasks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=114c5dbb1312a8bc
+;; 
+;; The contents of this file are auto-generated. Only add modifications to the end of this file.
+;; Any modifications will be lost when the file is re-generated.
+;; 
+import System
+import System.Text
+import System.Runtime.Serialization
+import System.ServiceModel
+namespace BusinessLogic
+ 
+;;; <summary>
+;;; Structural Interface Class BusinessLogicTmp
+;;; </summary>
+	{DataContractAttribute}
+	{Serializable}
+	public class Supplier
+	 
+		private f_Supplier_id    ,string
+		 
+		;;; <summary>
+		;;; supplier id
+		;;; </summary>
+		{DataMemberAttribute}
+		public property Supplier_id   ,string
+			method get
+			proc
+			    mreturn f_Supplier_id
+			endmethod
+			method set
+			proc
+				if(f_Supplier_id != value)
+				begin
+					m_changed = true 
+					f_Supplier_id = value
+				end
+			endmethod
+		endproperty
+		private f_Name    ,string
+		 
+		;;; <summary>
+		;;; supplier name
+		;;; </summary>
+		{DataMemberAttribute}
+		public property Name   ,string
+			method get
+			proc
+			    mreturn f_Name
+			endmethod
+			method set
+			proc
+				if(f_Name != value)
+				begin
+					m_changed = true 
+					f_Name = value
+				end
+			endmethod
+		endproperty
+		private f_Address_1    ,string
+		 
+		;;; <summary>
+		;;; addrss line 1
+		;;; </summary>
+		{DataMemberAttribute}
+		public property Address_1   ,string
+			method get
+			proc
+			    mreturn f_Address_1
+			endmethod
+			method set
+			proc
+				if(f_Address_1 != value)
+				begin
+					m_changed = true 
+					f_Address_1 = value
+				end
+			endmethod
+		endproperty
+		private f_Address_2    ,string
+		 
+		;;; <summary>
+		;;; address line 2
+		;;; </summary>
+		{DataMemberAttribute}
+		public property Address_2   ,string
+			method get
+			proc
+			    mreturn f_Address_2
+			endmethod
+			method set
+			proc
+				if(f_Address_2 != value)
+				begin
+					m_changed = true 
+					f_Address_2 = value
+				end
+			endmethod
+		endproperty
+		private f_Address_3    ,string
+		 
+		;;; <summary>
+		;;; address line 3
+		;;; </summary>
+		{DataMemberAttribute}
+		public property Address_3   ,string
+			method get
+			proc
+			    mreturn f_Address_3
+			endmethod
+			method set
+			proc
+				if(f_Address_3 != value)
+				begin
+					m_changed = true 
+					f_Address_3 = value
+				end
+			endmethod
+		endproperty
+		private f_City    ,string
+		 
+		;;; <summary>
+		;;; city
+		;;; </summary>
+		{DataMemberAttribute}
+		public property City   ,string
+			method get
+			proc
+			    mreturn f_City
+			endmethod
+			method set
+			proc
+				if(f_City != value)
+				begin
+					m_changed = true 
+					f_City = value
+				end
+			endmethod
+		endproperty
+		private f_Postal_code    ,string
+		 
+		;;; <summary>
+		;;; post code
+		;;; </summary>
+		{DataMemberAttribute}
+		public property Postal_code   ,string
+			method get
+			proc
+			    mreturn f_Postal_code
+			endmethod
+			method set
+			proc
+				if(f_Postal_code != value)
+				begin
+					m_changed = true 
+					f_Postal_code = value
+				end
+			endmethod
+		endproperty
+		private f_Web_address    ,string
+		 
+		;;; <summary>
+		;;; web address
+		;;; </summary>
+		{DataMemberAttribute}
+		public property Web_address   ,string
+			method get
+			proc
+			    mreturn f_Web_address
+			endmethod
+			method set
+			proc
+				if(f_Web_address != value)
+				begin
+					m_changed = true 
+					f_Web_address = value
+				end
+			endmethod
+		endproperty
+		private f_Spare    ,string
+		 
+		;;; <summary>
+		;;; spare
+		;;; </summary>
+		{DataMemberAttribute}
+		public property Spare   ,string
+			method get
+			proc
+			    mreturn f_Spare
+			endmethod
+			method set
+			proc
+				if(f_Spare != value)
+				begin
+					m_changed = true 
+					f_Spare = value
+				end
+			endmethod
+		endproperty
+		;;; <summary>
+		;;; structure clone
+		;;; </summary>
+		public method Clone    ,@BusinessLogic.Supplier
+		endparams
+		proc
+			data tmp = new BusinessLogic.Supplier()
+			tmp.f_Supplier_id = this.f_Supplier_id
+			tmp.f_Name = this.f_Name
+			tmp.f_Address_1 = this.f_Address_1
+			tmp.f_Address_2 = this.f_Address_2
+			tmp.f_Address_3 = this.f_Address_3
+			tmp.f_City = this.f_City
+			tmp.f_Postal_code = this.f_Postal_code
+			tmp.f_Web_address = this.f_Web_address
+			tmp.f_Spare = this.f_Spare
+			mreturn tmp
+		endmethod
+		private f_original    ,@BusinessLogic.Supplier
+		;;; <summary>
+		;;; Used to store a copy of the original structure
+		;;; </summary>
+		public property Original,  @BusinessLogic.Supplier
+			method get
+			proc
+				mreturn f_original
+			endmethod
+			method set
+			proc
+				f_original = value
+			endmethod
+			endproperty
+		;;; <summary>
+		;;; structure equals
+		;;; </summary>
+		public method Equals,   boolean
+			str    ,@BusinessLogic.Supplier
+		endparams
+		proc
+			if (this.Supplier_id != str.Supplier_id)
+				mreturn false
+			if (this.Name != str.Name)
+				mreturn false
+			if (this.Address_1 != str.Address_1)
+				mreturn false
+			if (this.Address_2 != str.Address_2)
+				mreturn false
+			if (this.Address_3 != str.Address_3)
+				mreturn false
+			if (this.City != str.City)
+				mreturn false
+			if (this.Postal_code != str.Postal_code)
+				mreturn false
+			if (this.Web_address != str.Web_address)
+				mreturn false
+			if (this.Spare != str.Spare)
+				mreturn false
+			mreturn true
+		endmethod
+ 
+		private m_changed    ,boolean, false
+ 
+		;;; <summary>
+		;;; Structure Changed 
+		;;; </summary>
+		;;; <returns>true if structure has been changed</returns>
+		public property Changed    ,boolean
+			method get
+			proc
+			    mreturn m_changed
+		endmethod
+		endproperty
+ 
+		;;; <summary>
+		;;; Serialize a structure to a string
+		;;; </summary>
+		public method StructToSynergy,    A
+		endparams
+		record Tmp_Supplier
+			tSupplier_id    ,a20
+			tName    ,a50
+			tAddress_1    ,a50
+			tAddress_2    ,a50
+			tAddress_3    ,a50
+			tCity    ,a30
+			tPostal_code    ,a10
+			tWeb_address    ,a78
+			tSpare    ,a62
+		endrecord
+		proc
+			Tmp_Supplier.tSupplier_id = this.Supplier_id
+			Tmp_Supplier.tName = this.Name
+			Tmp_Supplier.tAddress_1 = this.Address_1
+			Tmp_Supplier.tAddress_2 = this.Address_2
+			Tmp_Supplier.tAddress_3 = this.Address_3
+			Tmp_Supplier.tCity = this.City
+			Tmp_Supplier.tPostal_code = this.Postal_code
+			Tmp_Supplier.tWeb_address = this.Web_address
+			Tmp_Supplier.tSpare = this.Spare
+			mreturn Tmp_Supplier
+		endmethod
+		;;; <summary>
+		;;; Serialize a Synergy structure to a .NET structure
+		;;; </summary>
+		public method SynergyToStruct,    void 
+			structIn    ,a
+		endparams
+		record Tmp_Supplier
+			tSupplier_id    ,a20
+			tName    ,a50
+			tAddress_1    ,a50
+			tAddress_2    ,a50
+			tAddress_3    ,a50
+			tCity    ,a30
+			tPostal_code    ,a10
+			tWeb_address    ,a78
+			tSpare    ,a62
+		endrecord
+		proc
+			Tmp_Supplier = structIn
+			f_Supplier_id = %atrim(Tmp_Supplier.tSupplier_id)
+			f_Name = %atrim(Tmp_Supplier.tName)
+			f_Address_1 = %atrim(Tmp_Supplier.tAddress_1)
+			f_Address_2 = %atrim(Tmp_Supplier.tAddress_2)
+			f_Address_3 = %atrim(Tmp_Supplier.tAddress_3)
+			f_City = %atrim(Tmp_Supplier.tCity)
+			f_Postal_code = %atrim(Tmp_Supplier.tPostal_code)
+			f_Web_address = %atrim(Tmp_Supplier.tWeb_address)
+			f_Spare = %atrim(Tmp_Supplier.tSpare)
+			mreturn
+		endmethod
+	endclass
+endnamespace

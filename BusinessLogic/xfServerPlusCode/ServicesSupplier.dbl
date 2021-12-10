@@ -1,0 +1,257 @@
+;;******************************************************************************
+;;WARNING: This file was created by CodeGen. Changes will be lost if regenerated
+;;******************************************************************************
+
+import System.Collections
+import Synergex.SynergyDE.Select
+
+.include "SUPPLIER" repository, structure="strSupplier", end
+
+{xfMethod(interface="Services")}
+function CreateSupplier, METHOD_STATUS
+    required in aSupplier, strSupplier
+    endparams
+    stack record
+        ch, int
+        status, METHOD_STATUS
+    endrecord
+proc
+    status = METHOD_STATUS.SUCCESS
+
+    try
+    begin
+        open(ch=0,u:i,"DAT:suppliers.ism")
+        store(ch,aSupplier)
+    end
+    catch (e, @DuplicateException)
+    begin
+        status = METHOD_STATUS.FAIL
+    end
+    catch (e, @Exception)
+    begin
+        status = METHOD_STATUS.FATAL_ERROR
+    end
+    finally
+    begin
+        if (ch&&chopen(ch))
+            close ch
+    end
+    endtry
+
+    freturn status
+
+endfunction
+
+{xfMethod(interface="Services")}
+function ReadAllSuppliers, METHOD_STATUS
+    {xfParameter(collectionType=xfCollectType.structure,structure="strSupplier")}
+    required out aSuppliers, @ArrayList
+    endparams
+    stack record
+        status, METHOD_STATUS
+    endrecord
+proc
+
+    status = METHOD_STATUS.SUCCESS
+
+    aSuppliers = new ArrayList()
+
+    try
+    begin
+        data rec, strSupplier
+        foreach rec in new Select(new From("DAT:suppliers.ism",rec))
+            aSuppliers.Add((@strSupplier)rec)
+    end
+    catch (e, @Exception)
+    begin
+        status = METHOD_STATUS.FATAL_ERROR
+    end
+    endtry
+
+    freturn status
+
+endfunction
+
+{xfMethod(interface="Services")}
+function ReadSupplier, METHOD_STATUS
+    required in  aSupplierId, A20
+    required out aSupplier, strSupplier
+    required out aGrfa, String
+    endparams
+    stack record
+        ch, int
+        status, METHOD_STATUS
+        grfa, a10
+    endrecord
+proc
+    status = METHOD_STATUS.SUCCESS
+
+    init aSupplier
+    aSupplier.supplier_id = aSupplierId
+
+    try
+    begin
+        open(ch=0,I:I,"DAT:suppliers.ism")
+        read(ch,aSupplier,%keyval(ch,aSupplier,0),GETRFA:grfa)
+        aGrfa = grfa
+    end
+    catch (e, @EndOfFileException)
+    begin
+        init aSupplier
+        status = METHOD_STATUS.FAIL
+    end
+    catch (e, @KeyNotSameException)
+    begin
+	init aSupplier
+        status = METHOD_STATUS.FAIL
+    end
+    catch (e, @Exception)
+    begin
+        init aSupplier
+        status = METHOD_STATUS.FATAL_ERROR
+    end
+    finally
+    begin
+        if (ch&&chopen(ch))
+            close ch
+    end
+    endtry
+
+    freturn status
+
+endfunction
+
+{xfMethod(interface="Services")}
+function UpdateSupplier, METHOD_STATUS
+    required inout aSupplier, strSupplier
+    required inout aGrfa, String
+    endparams
+    stack record
+        ch, int
+        rec, strSupplier
+        status, METHOD_STATUS
+        grfa, a10
+    endrecord
+proc
+    status = METHOD_STATUS.SUCCESS
+
+    try
+    begin
+        open(ch=0,u:i,"DAT:suppliers.ism")
+        ;;Attempt to read the original record by GRFA to make sure that
+        ;;nobody else has modified or deleted it
+        grfa=aGrfa
+        read(ch,rec,RFA:grfa,GETRFA:grfa)
+        write(ch,aSupplier)
+    end
+    catch (ex, @RecordNotSameException)
+    begin
+        ;;Failed to lock the original record, it must have been changed
+        ;;by another process since this user obtained it. We'll return
+        ;;the new record and it's GRFA to the user
+        aSupplier = rec
+        aGrfa = grfa
+        status = METHOD_STATUS.FAIL
+    end
+    catch (e, @DuplicateException)
+    begin
+        status = METHOD_STATUS.FAIL
+    end
+    catch (e, @Exception)
+    begin
+        status = METHOD_STATUS.FATAL_ERROR
+    end
+    finally
+    begin
+        if (ch&&chopen(ch))
+            close ch
+    end
+    endtry
+
+    freturn status
+
+endfunction
+
+{xfMethod(interface="Services")}
+function DeleteSupplier, METHOD_STATUS
+    required in aGrfa, String
+    endparams
+    stack record
+        ch, int
+        rec, strSupplier
+        status, METHOD_STATUS
+        grfa, a10
+    endrecord
+proc
+    status = METHOD_STATUS.SUCCESS
+
+    try
+    begin
+        open(ch=0,u:i,"DAT:suppliers.ism")
+        ;;Attempt to read the original record by GRFA to make sure that
+        ;;nobody else has modified or deleted it
+        grfa=aGrfa
+        read(ch,rec,RFA:grfa)
+        delete(ch)
+    end
+    catch (ex, @RecordNotSameException)
+    begin
+        status = METHOD_STATUS.FAIL
+    end
+    catch (e, @Exception)
+    begin
+        status = METHOD_STATUS.FATAL_ERROR
+    end
+    finally
+    begin
+        if (ch&&chopen(ch))
+            close ch
+    end
+    endtry
+
+    freturn status
+
+endfunction
+
+{xfMethod(interface="Services")}
+function SupplierExists, METHOD_STATUS
+    required in  aSupplierId, A20
+    endparams
+    stack record
+        ch, int
+        rec, strSupplier
+        status, METHOD_STATUS
+    endrecord
+proc
+    status = METHOD_STATUS.SUCCESS
+
+    init rec
+    rec.supplier_id = aSupplierId
+
+    try
+    begin
+        open(ch=0,I:I,"DAT:suppliers.ism")
+        find(ch,,%keyval(ch,rec,0))
+    end
+    catch (e, @EndOfFileException)
+    begin
+        status = METHOD_STATUS.FAIL
+    end
+    catch (e, @KeyNotSameException)
+    begin
+        status = METHOD_STATUS.FAIL
+    end
+    catch (e, @Exception)
+    begin
+        status = METHOD_STATUS.FATAL_ERROR
+    end
+    finally
+    begin
+        if (ch&&chopen(ch))
+            close ch
+    end
+    endtry
+
+    freturn status
+
+endfunction

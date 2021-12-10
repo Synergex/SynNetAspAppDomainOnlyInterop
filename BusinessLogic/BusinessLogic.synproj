@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Name>"BusinessLogic"</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3322ede9-edc8-417c-8c35-9bf84a8b9bbb}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>BusinessLogic</RootNamespace>
+    <AssemblyName>BusinessLogic</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <TargetPlatform>4.</TargetPlatform>
+    <MainFile>Class.dbl</MainFile>
+    <XfplMigration>true</XfplMigration>
+    <DBL_qWarnLevel>3 - Don't display warnings levels higher than 3</DBL_qWarnLevel>
+    <DBL_qWarn>True</DBL_qWarn>
+    <DBLCmdOptions> -W3 -qstack</DBLCmdOptions>
+    <Language>Synergy</Language>
+    <DBL_unQulRecStm>Stack</DBL_unQulRecStm>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+    <ProjEnvVars>RPSMFIL=$(SolutionDir)rps\rpsmain.ism;RPSTFIL=$(SolutionDir)rps\rpstext.ism;</ProjEnvVars>
+    <XFPL_StrPubFlds>False</XFPL_StrPubFlds>
+    <XFPL_BinFldString>False</XFPL_BinFldString>
+    <XFPL_AltFldNme>False</XFPL_AltFldNme>
+    <XFPL_AltIntrface>False</XFPL_AltIntrface>
+    <XFPL_AltIntrfaceName />
+    <XFPL_Pool>False</XFPL_Pool>
+    <XFPL_PoolReturn>False</XFPL_PoolReturn>
+    <XFPL_OutParamType>False</XFPL_OutParamType>
+    <XFPL_WCFContracts>True</XFPL_WCFContracts>
+    <XFPL_SupportMethods>True</XFPL_SupportMethods>
+    <XFPL_GenPropertyChanged>False</XFPL_GenPropertyChanged>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <IncludeDebugInformation>true</IncludeDebugInformation>
+    <OutputPath>bin\Debug\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DebugOptimize>Debug</DebugOptimize>
+    <DocumentationFile>
+    </DocumentationFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <SerializeAssembly>Auto</SerializeAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <IncludeDebugInformation>true</IncludeDebugInformation>
+    <OutputPath>bin\Release\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DebugOptimize>Optimize</DebugOptimize>
+    <DocumentationFile>bin\Release\BusinessLogic.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="synrnt">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ServicesCustom.dbl" />
+    <Compile Include="SynergyRoutines.dbl" />
+    <Compile Include="Properties\AssemblyInfo.dbl" />
+    <Compile Include="xfServerPlusCode\MethodStatus.dbl" />
+    <Compile Include="xfServerPlusCode\ServicesCustom.dbl" />
+    <Compile Include="xfServerPlusCode\ServicesPart.dbl" />
+    <Compile Include="xfServerPlusCode\ServicesProductGroup.dbl" />
+    <Compile Include="xfServerPlusCode\ServicesSupplier.dbl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="xfServerPlusCode" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Synergex\VS2010\Synergex.SynergyDE.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

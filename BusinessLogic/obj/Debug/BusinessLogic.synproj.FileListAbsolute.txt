@@ -1,0 +1,5 @@
+D:\Dev\Demos\WEB\SynNetAspAppDomainOnlyInterop\BusinessLogic\bin\Debug\BusinessLogic.dll
+D:\Dev\Demos\WEB\SynNetAspAppDomainOnlyInterop\BusinessLogic\bin\Debug\BusinessLogic.pdb
+D:\Dev\Demos\WEB\SynNetAspAppDomainOnlyInterop\BusinessLogic\obj\Debug\BusinessLogic.dll
+D:\Dev\Demos\WEB\SynNetAspAppDomainOnlyInterop\BusinessLogic\obj\Debug\BusinessLogic.pdb
+D:\Dev\Demos\WEB\SynNetAspAppDomainOnlyInterop\BusinessLogic\obj\Debug\BusinessLogic.synprojResolveAssemblyReference.cache

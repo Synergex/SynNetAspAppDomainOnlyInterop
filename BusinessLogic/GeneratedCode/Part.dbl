@@ -1,0 +1,304 @@
+;; Generated on 29-Aug-2014 02:25:25 by SynergyTasks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=114c5dbb1312a8bc
+;; 
+;; The contents of this file are auto-generated. Only add modifications to the end of this file.
+;; Any modifications will be lost when the file is re-generated.
+;; 
+import System
+import System.Text
+import System.Runtime.Serialization
+import System.ServiceModel
+namespace BusinessLogic
+ 
+;;; <summary>
+;;; Structural Interface Class BusinessLogicTmp
+;;; </summary>
+	{DataContractAttribute}
+	{Serializable}
+	public class Part
+	 
+		private f_Id    ,string
+		 
+		;;; <summary>
+		;;; part ID
+		;;; </summary>
+		{DataMemberAttribute}
+		public property Id   ,string
+			method get
+			proc
+			    mreturn f_Id
+			endmethod
+			method set
+			proc
+				if(f_Id != value)
+				begin
+					m_changed = true 
+					f_Id = value
+				end
+			endmethod
+		endproperty
+		private f_Groupid    ,string
+		 
+		;;; <summary>
+		;;; Group ID
+		;;; </summary>
+		{DataMemberAttribute}
+		public property Groupid   ,string
+			method get
+			proc
+			    mreturn f_Groupid
+			endmethod
+			method set
+			proc
+				if(f_Groupid != value)
+				begin
+					m_changed = true 
+					f_Groupid = value
+				end
+			endmethod
+		endproperty
+		private f_Supplierid    ,string
+		 
+		;;; <summary>
+		;;; supplier id
+		;;; </summary>
+		{DataMemberAttribute}
+		public property Supplierid   ,string
+			method get
+			proc
+			    mreturn f_Supplierid
+			endmethod
+			method set
+			proc
+				if(f_Supplierid != value)
+				begin
+					m_changed = true 
+					f_Supplierid = value
+				end
+			endmethod
+		endproperty
+		private f_Description    ,string
+		 
+		;;; <summary>
+		;;; Description
+		;;; </summary>
+		{DataMemberAttribute}
+		public property Description   ,string
+			method get
+			proc
+			    mreturn f_Description
+			endmethod
+			method set
+			proc
+				if(f_Description != value)
+				begin
+					m_changed = true 
+					f_Description = value
+				end
+			endmethod
+		endproperty
+		private f_Technical_info    ,string
+		 
+		;;; <summary>
+		;;; Technical info
+		;;; </summary>
+		{DataMemberAttribute}
+		public property Technical_info   ,string
+			method get
+			proc
+			    mreturn f_Technical_info
+			endmethod
+			method set
+			proc
+				if(f_Technical_info != value)
+				begin
+					m_changed = true 
+					f_Technical_info = value
+				end
+			endmethod
+		endproperty
+		private f_Quantity    ,int
+		 
+		;;; <summary>
+		;;; quantity in stock
+		;;; </summary>
+		{DataMemberAttribute}
+		public property Quantity   ,int
+			method get
+			proc
+			    mreturn f_Quantity
+			endmethod
+			method set
+			proc
+				if(f_Quantity != value)
+				begin
+					m_changed = true 
+					f_Quantity = value
+				end
+			endmethod
+		endproperty
+		private f_Cost_price    ,decimal
+		 
+		;;; <summary>
+		;;; cost price
+		;;; </summary>
+		{DataMemberAttribute}
+		public property Cost_price   ,decimal
+			method get
+			proc
+			    mreturn f_Cost_price
+			endmethod
+			method set
+			proc
+				if(f_Cost_price != value)
+				begin
+					m_changed = true 
+					f_Cost_price = value
+				end
+			endmethod
+		endproperty
+		private f_Spare    ,string
+		 
+		;;; <summary>
+		;;; *** Field To Do ***
+		;;; </summary>
+		{DataMemberAttribute}
+		public property Spare   ,string
+			method get
+			proc
+			    mreturn f_Spare
+			endmethod
+			method set
+			proc
+				if(f_Spare != value)
+				begin
+					m_changed = true 
+					f_Spare = value
+				end
+			endmethod
+		endproperty
+		;;; <summary>
+		;;; structure clone
+		;;; </summary>
+		public method Clone    ,@BusinessLogic.Part
+		endparams
+		proc
+			data tmp = new BusinessLogic.Part()
+			tmp.f_Id = this.f_Id
+			tmp.f_Groupid = this.f_Groupid
+			tmp.f_Supplierid = this.f_Supplierid
+			tmp.f_Description = this.f_Description
+			tmp.f_Technical_info = this.f_Technical_info
+			tmp.f_Quantity = this.f_Quantity
+			tmp.f_Cost_price = this.f_Cost_price
+			tmp.f_Spare = this.f_Spare
+			mreturn tmp
+		endmethod
+		private f_original    ,@BusinessLogic.Part
+		;;; <summary>
+		;;; Used to store a copy of the original structure
+		;;; </summary>
+		public property Original,  @BusinessLogic.Part
+			method get
+			proc
+				mreturn f_original
+			endmethod
+			method set
+			proc
+				f_original = value
+			endmethod
+			endproperty
+		;;; <summary>
+		;;; structure equals
+		;;; </summary>
+		public method Equals,   boolean
+			str    ,@BusinessLogic.Part
+		endparams
+		proc
+			if (this.Id != str.Id)
+				mreturn false
+			if (this.Groupid != str.Groupid)
+				mreturn false
+			if (this.Supplierid != str.Supplierid)
+				mreturn false
+			if (this.Description != str.Description)
+				mreturn false
+			if (this.Technical_info != str.Technical_info)
+				mreturn false
+			if (this.Quantity != str.Quantity)
+				mreturn false
+			if (this.Cost_price != str.Cost_price)
+				mreturn false
+			if (this.Spare != str.Spare)
+				mreturn false
+			mreturn true
+		endmethod
+ 
+		private m_changed    ,boolean, false
+ 
+		;;; <summary>
+		;;; Structure Changed 
+		;;; </summary>
+		;;; <returns>true if structure has been changed</returns>
+		public property Changed    ,boolean
+			method get
+			proc
+			    mreturn m_changed
+		endmethod
+		endproperty
+ 
+		;;; <summary>
+		;;; Serialize a structure to a string
+		;;; </summary>
+		public method StructToSynergy,    A
+		endparams
+		record Tmp_Part
+			tId    ,a20
+			tGroupid    ,a20
+			tSupplierid    ,a20
+			tDescription    ,a50
+			tTechnical_info    ,a500
+			tQuantity    ,i4
+			tCost_price    ,d10.2
+			tSpare    ,a76
+		endrecord
+		proc
+			Tmp_Part.tId = this.Id
+			Tmp_Part.tGroupid = this.Groupid
+			Tmp_Part.tSupplierid = this.Supplierid
+			Tmp_Part.tDescription = this.Description
+			Tmp_Part.tTechnical_info = this.Technical_info
+			Tmp_Part.tQuantity = this.Quantity
+			Tmp_Part.tCost_price = this.Cost_price
+			Tmp_Part.tSpare = this.Spare
+			mreturn Tmp_Part
+		endmethod
+		;;; <summary>
+		;;; Serialize a Synergy structure to a .NET structure
+		;;; </summary>
+		public method SynergyToStruct,    void 
+			structIn    ,a
+		endparams
+		record Tmp_Part
+			tId    ,a20
+			tGroupid    ,a20
+			tSupplierid    ,a20
+			tDescription    ,a50
+			tTechnical_info    ,a500
+			tQuantity    ,i4
+			tCost_price    ,d10.2
+			tSpare    ,a76
+		endrecord
+		proc
+			Tmp_Part = structIn
+			f_Id = %atrim(Tmp_Part.tId)
+			f_Groupid = %atrim(Tmp_Part.tGroupid)
+			f_Supplierid = %atrim(Tmp_Part.tSupplierid)
+			f_Description = %atrim(Tmp_Part.tDescription)
+			f_Technical_info = %atrim(Tmp_Part.tTechnical_info)
+			f_Quantity = Tmp_Part.tQuantity
+			f_Cost_price = Tmp_Part.tCost_price
+			f_Spare = %atrim(Tmp_Part.tSpare)
+			mreturn
+		endmethod
+	endclass
+endnamespace

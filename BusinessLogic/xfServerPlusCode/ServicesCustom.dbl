@@ -1,0 +1,54 @@
+
+import System.Collections
+import Synergex.SynergyDE.Select
+
+{xfMethod(interface="Services")}
+function Login, METHOD_STATUS
+	required in userName, String
+	required in password, String
+	required out message, String
+	endparams
+	stack record
+		status, METHOD_STATUS
+	endrecord
+proc
+	status = METHOD_STATUS.SUCCESS
+	message = ""
+			
+	if (userName!="user"||password!="password")
+	begin
+		message = "Invalid login!"
+		status = METHOD_STATUS.FAIL
+	end
+	freturn status
+endfunction
+
+{xfMethod(interface="Services")}
+function GetProductGroupParts, METHOD_STATUS
+	required in  aGroupId, String 
+	{xfParameter(collectionType=xfCollectType.structure,structure="strPart")}
+	required out aParts, @ArrayList
+	endparams
+	stack record
+		status, METHOD_STATUS
+	endrecord
+proc
+			
+	status = METHOD_STATUS.SUCCESS
+	aParts = new ArrayList()
+			
+	try
+	begin
+		data rec, strPart
+		foreach rec in new Select(new From("DAT:parts.ism",rec),(Where)rec.groupid.eq.aGroupId)
+			aParts.Add((@strPart)rec)
+	end
+	catch (e, @Exception)
+	begin
+		status = METHOD_STATUS.FATAL_ERROR
+	end
+	endtry
+			
+	freturn status
+			
+endfunction
